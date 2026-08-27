@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Справочник поведения руководителя: 26 ситуаций с ценой каждой, режим для новичков и тест на 20 сцен.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2317324D'/%3E%3Crect x='8' y='7' width='3' height='18' fill='%23fff'/%3E%3Crect x='13' y='7' width='11' height='9' fill='%23D8A745'/%3E%3C/svg%3E">
+<style>*{margin:0;padding:0}</style>
+</head>
+<body>
+<title>Норма и серая зона</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style id="css">
+:root{
+  --ground:#F2F4F6;
+  --surface:#FFFFFF;
+  --surface-2:#E9EDF1;
+  --line:#D3DAE1;
+  --line-soft:#E4E9EE;
+  --ink:#141A21;
+  --ink-2:#4A5560;
+  --ink-3:#77828E;
+  --accent:#17324D;
+  --accent-soft:#DDE6EF;
+  --ok:#2E6B57;
+  --ok-bg:#E3EFE9;
+  --gray:#9A6A12;
+  --gray-bg:#F5EAD5;
+  --red:#A33228;
+  --red-bg:#F5E1DE;
+  --shadow:0 1px 2px rgba(20,26,33,.06), 0 8px 24px -16px rgba(20,26,33,.28);
+  --radius:3px;
+  --maxw:1180px;
+  --readw:640px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101419;
+    --surface:#171D24;
+    --surface-2:#1F262E;
+    --line:#2E3740;
+    --line-soft:#242C34;
+    --ink:#E7EBEF;
+    --ink-2:#AAB4BE;
+    --ink-3:#7B8791;
+    --accent:#9FC3E4;
+    --accent-soft:#1D2B39;
+    --ok:#7FC0A5;
+    --ok-bg:#17281F;
+    --gray:#D8A745;
+    --gray-bg:#2B2415;
+    --red:#E08D80;
+    --red-bg:#2C1A18;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101419;
+  --surface:#171D24;
+  --surface-2:#1F262E;
+  --line:#2E3740;
+  --line-soft:#242C34;
+  --ink:#E7EBEF;
+  --ink-2:#AAB4BE;
+  --ink-3:#7B8791;
+  --accent:#9FC3E4;
+  --accent-soft:#1D2B39;
+  --ok:#7FC0A5;
+  --ok-bg:#17281F;
+  --gray:#D8A745;
+  --gray-bg:#2B2415;
+  --red:#E08D80;
+  --red-bg:#2C1A18;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Golos Text","Helvetica Neue",Arial,sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:"PT Serif",Georgia,serif;text-wrap:balance;margin:0;line-height:1.2;letter-spacing:-.005em}
+h3{line-height:1.3}
+p{margin:0}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+
+/* ---------- header ---------- */
+.topbar{
+  position:sticky;top:0;z-index:20;
+  background:color-mix(in srgb, var(--ground) 88%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-in{
+  max-width:var(--maxw);margin:0 auto;padding:14px 22px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;
+}
+.brand{display:flex;flex-direction:column;gap:1px;margin-right:auto}
+.brand b{font-family:"PT Serif",Georgia,serif;font-size:19px;font-weight:700;letter-spacing:-.01em}
+.brand span{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+}
+.tabs{display:flex;gap:2px;background:var(--surface-2);padding:3px;border-radius:var(--radius)}
+.tab{
+  padding:7px 15px;border-radius:2px;font-size:14px;font-weight:500;color:var(--ink-2);
+  white-space:nowrap;transition:background .15s,color .15s;
+}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow);font-weight:600}
+
+/* ---------- shell ---------- */
+main{max-width:var(--maxw);margin:0 auto;padding:34px 22px 90px}
+.narrow{max-width:var(--readw);margin:0 auto}
+.panel[hidden]{display:none}
+
+.lede{
+  font-family:"PT Serif",Georgia,serif;font-size:19px;line-height:1.5;color:var(--ink-2);
+}
+.lede em{color:var(--ink);font-style:italic}
+
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+}
+
+/* ---------- legend ---------- */
+.legend{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin:26px 0 0}
+.legend div{
+  border-left:3px solid var(--c);background:var(--surface);padding:11px 14px;border-radius:0 var(--radius) var(--radius) 0;
+  box-shadow:var(--shadow);
+}
+.legend b{display:block;font-family:"Golos Text",sans-serif;font-size:13px;color:var(--c);letter-spacing:.01em}
+.legend span{font-size:13.5px;color:var(--ink-2);line-height:1.4;display:block;margin-top:2px}
+
+/* ---------- rules ---------- */
+.rules{counter-reset:r;display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden;margin-top:14px}
+.rules li{
+  counter-increment:r;list-style:none;background:var(--surface);
+  padding:15px 18px 15px 56px;position:relative;font-size:16.5px;
+}
+.rules li::before{
+  content:counter(r);position:absolute;left:18px;top:15px;
+  font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--accent);
+  border:1px solid var(--accent-soft);background:var(--accent-soft);
+  width:22px;height:22px;display:grid;place-items:center;border-radius:50%;
+}
+ul.rules{padding:0;margin:14px 0 0}
+
+/* ---------- search / filters ---------- */
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:22px 0 20px}
+.search{
+  flex:1 1 240px;min-width:200px;display:flex;align-items:center;gap:8px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:0 12px;
+}
+.search input{
+  border:none;background:none;outline:none;font:inherit;color:inherit;
+  padding:10px 0;width:100%;
+}
+.search svg{flex:none;color:var(--ink-3)}
+.chip{
+  padding:8px 13px;border:1px solid var(--line);border-radius:var(--radius);
+  font-size:13.5px;color:var(--ink-2);background:var(--surface);white-space:nowrap;
+}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--ground)}
+
+/* ---------- cards ---------- */
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));align-items:start}
+.card{
+  background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--radius);
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.card > header{padding:15px 18px 12px;border-bottom:1px solid var(--line-soft);display:flex;gap:10px;align-items:baseline}
+.card > header .num{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3);flex:none;padding-top:2px;
+}
+.card h3{font-size:17px;line-height:1.3;font-weight:700}
+.states{display:grid}
+.st{display:grid;grid-template-columns:auto 1fr;gap:0 11px;padding:12px 18px;border-bottom:1px solid var(--line-soft);align-items:start}
+.st .bar{width:3px;border-radius:2px;background:var(--c);align-self:stretch;min-height:100%}
+.st b{
+  display:block;color:var(--c);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  font-family:"IBM Plex Mono",monospace;margin-bottom:2px;
+}
+.st p{font-size:14.5px;line-height:1.5;color:var(--ink-2)}
+.say::before{content:"«"}
+.say::after{content:"»"}
+.say{margin-top:7px;padding-left:10px;border-left:2px solid var(--ok);font-size:14px;line-height:1.45;color:var(--ink);font-style:italic}
+.st.norm{--c:var(--ok)} .st.gray{--c:var(--gray)} .st.red{--c:var(--red)}
+.check{
+  padding:12px 18px;background:var(--surface-2);font-size:13.5px;color:var(--ink-2);
+  display:flex;gap:9px;align-items:flex-start;
+}
+.check b{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);flex:none;padding-top:2px;
+}
+.cost{
+  padding:12px 18px;border-bottom:1px solid var(--line-soft);
+  display:flex;gap:9px;align-items:flex-start;font-size:14px;line-height:1.5;color:var(--ink);
+}
+.cost b{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--red);flex:none;padding-top:3px;white-space:nowrap;
+}
+.card > header{flex-wrap:wrap;align-items:center;gap:8px 10px}
+.ttl{display:flex;gap:10px;align-items:baseline;flex:1 1 220px;min-width:0}
+.w{
+  margin-left:auto;flex:none;font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;padding:2px 7px;border-radius:2px;white-space:nowrap;
+}
+.w-hi{background:var(--red-bg);color:var(--red)}
+.w-lo{background:var(--surface-2);color:var(--ink-3)}
+.editbar{
+  position:sticky;top:57px;z-index:19;display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+  max-width:var(--maxw);margin:0 auto;padding:11px 22px;
+  background:var(--gray-bg);border-bottom:1px solid var(--line);
+}
+.editbar .hint{font-size:13.5px;color:var(--gray);margin-right:auto}
+.editbar .msg{font-size:13px;color:var(--ink-3)}
+body[data-edit] [data-f]{
+  outline:1px dashed var(--line);outline-offset:3px;border-radius:2px;cursor:text;
+}
+body[data-edit] [data-f]:hover{outline-color:var(--gray)}
+body[data-edit] [data-f]:focus{outline:2px solid var(--accent);outline-offset:3px}
+.sec-head{margin:34px 0 14px;display:flex;align-items:baseline;gap:12px}
+.sec-head h2{font-size:23px}
+.sec-head hr{flex:1;border:none;border-top:1px solid var(--line)}
+.sec-head:first-of-type{margin-top:6px}
+.empty{color:var(--ink-3);padding:40px 0;text-align:center;font-size:15px}
+.who{margin-top:6px;font-size:14px;color:var(--ink-3);border-left:2px solid var(--line);padding-left:11px}
+.note{
+  margin-top:20px;background:var(--accent-soft);border-left:3px solid var(--accent);
+  padding:13px 16px;border-radius:0 var(--radius) var(--radius) 0;font-size:15px;line-height:1.5;
+}
+.note b{display:block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.gloss{margin:14px 0 0;padding:0;display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden}
+.gloss li{list-style:none;background:var(--surface);padding:12px 16px;font-size:15px;line-height:1.5}
+.gloss b{font-weight:600}
+.blank{background:var(--gray-bg);color:var(--gray);padding:0 8px;border-radius:2px;font-family:"IBM Plex Mono",monospace;font-size:13px}
+.badge{
+  display:inline-block;margin-left:8px;padding:1px 7px;border-radius:2px;background:var(--surface-2);
+  color:var(--ink-3);font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.07em;
+  text-transform:uppercase;vertical-align:2px;
+}
+.ob-say{margin-top:5px;padding-left:10px;border-left:2px solid var(--ok);font-size:14.5px;color:var(--ink);font-style:italic;line-height:1.45}
+
+/* ---------- onboarding ---------- */
+.ob-sec{margin-top:34px}
+.ob-sec h2{font-size:22px;margin-bottom:4px}
+.ob-list{margin:14px 0 0;padding:0;display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden}
+.ob-list li{list-style:none;background:var(--surface);padding:13px 16px 13px 16px;display:grid;gap:3px}
+.ob-list .when{font-size:13px;color:var(--ink-3);font-family:"IBM Plex Mono",monospace}
+.ob-list .do{font-size:15.5px;line-height:1.5}
+.pitfall{
+  margin-top:12px;background:var(--gray-bg);border-left:3px solid var(--gray);
+  padding:12px 16px;border-radius:0 var(--radius) var(--radius) 0;font-size:14.5px;line-height:1.5;
+}
+.pitfall b{display:block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--gray);margin-bottom:3px}
+
+/* ---------- test ---------- */
+.score{
+  position:sticky;top:66px;z-index:10;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:12px 16px;display:flex;gap:16px;align-items:center;
+  box-shadow:var(--shadow);margin-bottom:18px;flex-wrap:wrap;
+}
+.score .n{font-family:"IBM Plex Mono",monospace;font-size:15px;font-variant-numeric:tabular-nums}
+.score .track{flex:1;min-width:120px;height:5px;background:var(--surface-2);border-radius:3px;overflow:hidden}
+.score .fill{height:100%;width:0;background:var(--accent);transition:width .3s}
+.q{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:12px}
+.q .scene{font-size:16px;line-height:1.55;margin-bottom:14px}
+.q .scene .qn{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);margin-right:8px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt{
+  padding:9px 15px;border:1px solid var(--line);border-radius:var(--radius);font-size:14px;
+  transition:border-color .15s,background .15s;
+}
+.opt:hover:not(:disabled){border-color:var(--ink-3)}
+.opt:disabled{cursor:default}
+.opt.picked{border-color:var(--c);background:var(--bg);color:var(--c);font-weight:600}
+.opt.answer{border-color:var(--c);color:var(--c);font-weight:600}
+.opt.o-norm{--c:var(--ok);--bg:var(--ok-bg)}
+.opt.o-gray{--c:var(--gray);--bg:var(--gray-bg)}
+.opt.o-red{--c:var(--red);--bg:var(--red-bg)}
+.why{margin-top:13px;padding-top:13px;border-top:1px solid var(--line-soft);font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+.why b{color:var(--ink)}
+.why[hidden]{display:none}
+
+/* ---------- tools ---------- */
+.tool{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;margin-top:16px}
+.tool h2{font-size:21px;margin-bottom:8px}
+.tool p{font-size:15.5px;line-height:1.6;color:var(--ink-2);margin-top:10px}
+.tool ol,.tool ul{margin:12px 0 0;padding-left:20px}
+.tool li{font-size:15.5px;line-height:1.6;margin-bottom:7px}
+.quote{border-left:3px solid var(--ok);background:var(--ok-bg);padding:12px 16px;border-radius:0 var(--radius) var(--radius) 0;margin-top:12px;font-size:15px;line-height:1.55}
+.quote.bad{border-color:var(--red);background:var(--red-bg)}
+.quote b{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;display:block;margin-bottom:3px;color:var(--ok)}
+.quote.bad b{color:var(--red)}
+.selfcheck{counter-reset:s;margin:14px 0 0;padding:0}
+.selfcheck li{
+  list-style:none;counter-increment:s;padding:9px 0 9px 34px;position:relative;
+  border-bottom:1px solid var(--line-soft);font-size:15px;line-height:1.5;
+}
+.selfcheck li:last-child{border-bottom:none}
+.selfcheck li::before{
+  content:counter(s);position:absolute;left:0;top:9px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3);
+}
+footer{max-width:var(--maxw);margin:0 auto;padding:0 22px 60px;color:var(--ink-3);font-size:13.5px;line-height:1.6}
+@media (max-width:640px){
+  .topbar-in{padding:12px 16px}
+  main{padding:26px 16px 70px}
+  .brand b{font-size:17px}
+  .tabs{width:100%;overflow-x:auto}
+  .grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="brand">
+      <b>Норма и серая зона</b>
+      <span>поведение руководителя</span>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" data-panel="ob" aria-selected="true">Новичку</button>
+      <button class="tab" role="tab" data-panel="work" aria-selected="false">Рабочий режим</button>
+      <button class="tab" role="tab" data-panel="test" aria-selected="false">Тест</button>
+      <button class="tab" role="tab" data-panel="tools" aria-selected="false">Инструменты</button>
+    </div>
+    <button class="chip" id="editBtn" aria-pressed="false">Править текст</button>
+  </div>
+</div>
+
+<div class="editbar" id="editbar" hidden>
+  <span class="hint">Кликните в любой текст карточки и правьте. Изменения сохраняются в вашем браузере.</span>
+  <button class="chip" id="saveFile">Скачать файл</button>
+  <button class="chip" id="pubBtn" hidden>Опубликовать для всех</button>
+  <button class="chip" id="resetEdits">Вернуть как было</button>
+  <span class="msg" id="editMsg"></span>
+</div>
+
+<main>
+
+<!-- ===================== НОВИЧКУ ===================== -->
+<section class="panel narrow" id="p-ob">
+  <p class="eyebrow">Читать один раз, минут пятнадцать</p>
+  <h1 style="font-size:32px;margin:8px 0 6px">Как у нас принято работать</h1>
+  <p class="who">Читайте про себя. Дальше в примерах будет «он» — это руководитель вообще, подставляйте себя.</p>
+  <p class="lede" style="margin-top:16px">Здесь нет ничего про характер и таланты. Только про поступки, которые видно со стороны. Если вы делаете иначе — это не приговор, но лучше знать заранее, <em>чего от вас ждут по умолчанию</em>.</p>
+
+  <div class="note">
+    <b>Сразу о главном</b>
+    Это не форма оценки. Никто не сидит с этим списком и не ставит вам галочки. Это описание правил, которые обычно узнают месяцами, по чужим реакциям, — чтобы вы узнали их за пятнадцать минут.
+  </div>
+
+  <div style="margin-top:30px">
+    <p class="eyebrow">Почему тут столько правил про «напиши»</p>
+    <p style="margin-top:9px;font-size:16px;line-height:1.55;color:var(--ink-2)">Там, где люди работают бок о бок — в зале, в цехе, на смене, — руководителя видно. Видно, кто чем занят, кто застрял, кто злится. Записывать нечего: посмотрел и всё понял.</p>
+    <p style="margin-top:11px;font-size:16px;line-height:1.55;color:var(--ink-2)">Здесь друг друга не видно. Часть людей работает из дома, результат появляется не к концу смены, а через месяц. Половина правил ниже — это замена зрению, а не бюрократия. Вторая половина — про то, что решения тут живут дольше одного дня: к договорённости возвращаются через месяц, и восстановить её должен человек, которого при разговоре не было.</p>
+  </div>
+
+  <div style="margin-top:28px">
+    <p class="eyebrow">Пять вещей, из которых следует всё остальное</p>
+    <ul class="rules">
+      <li>Устная договорённость без письменного следа — не договорённость.</li>
+      <li>Статус приходит сам, а не после вопроса сверху.</li>
+      <li>Плохая новость стоит дешевле всего в первый день.</li>
+      <li>«Готово» означает готово.</li>
+      <li>Деньги согласуют до, а не после.</li>
+    </ul>
+  </div>
+
+  <div class="tool" style="margin-top:30px">
+    <h2>Если вы раньше руководили на виду</h2>
+    <p>В зале, в цехе, на смене, в магазине — там работает многое из того, что здесь не сработает. Три вещи устроены иначе, и это не про то, что тут нежнее.</p>
+    <p><b>Обратную связь дают один на один.</b> При всех она держалась на общем темпе: вы в одном помещении, через час всё забылось и пошли дальше. Здесь человек закрывает ноутбук и остаётся с этим один до завтра. Тот же приём перестаёт учить и начинает разрушать.</p>
+    <p><b>Ошибку чинят в работе, а не своими руками.</b> Встать и сделать за человека здесь никто не увидит, а он не научится: рядом с вами по десять часов никто не стоит. Учит только изменённый порядок работы.</p>
+    <p><b>Договорённость живёт дольше дня.</b> Сказанное голосом и не записанное через две недели существует в трёх версиях, и все искренние. На смене такого не бывало — там всё заканчивалось вместе со сменой.</p>
+  </div>
+
+  <div style="margin-top:32px">
+    <p class="eyebrow">Слова, которые встретятся дальше</p>
+    <p style="margin-top:8px;color:var(--ink-2);font-size:15px;line-height:1.5">Что они значат вообще — написано здесь. Где это лежит у нас — заполняет ваш руководитель на первой встрече. Жёлтым отмечено то, что нужно спросить.</p>
+    <ul class="gloss">
+      <li><b>Статус</b> — короткое сообщение о ходе работы: что сделано, где застряло, что нужно от руководителя. Куда писать и в какой день недели: <span class="blank">спросить</span></li>
+      <li><b>Письменный след</b> — любая запись, к которой можно вернуться через месяц: сообщение в рабочем чате или запись там, где вы ведёте дела. Голос и общая память не считаются.</li>
+      <li><b>Наверх</b> — ваш непосредственный руководитель. Если вопрос не его уровня, дальше несёт его он, а не вы.</li>
+      <li><b>План на квартал</b> — что команда обязуется сделать за три месяца, с запасом времени на непредвиденное. Где он лежит и пишете ли вы свой: <span class="blank">спросить</span></li>
+      <li><b>Бюджет</b> — деньги, которыми распоряжаетесь вы. Есть ли он у вас, где смотреть остаток, с какой суммы нужно согласование: <span class="blank">спросить</span></li>
+      <li><b>Общая папка команды</b> — место, куда кладут описания решённых задач, чтобы их нашли другие. Где она: <span class="blank">спросить</span></li>
+      <li><b>Порог согласования</b> — сумма, начиная с которой трату надо согласовать заранее. Ваша цифра: <span class="blank">спросить</span></li>
+      <li><b>Чек-лист</b> — список проверок перед сдачей работы. Если его нет, завести может любой, кто первым обжёгся.</li>
+      <li><b>Оценка</b> — регулярный разговор о работе руководителя. Когда бывает и что от вас нужно: <span class="blank">спросить</span></li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <b>Про два числа</b>
+    Дальше встретятся «ответить за четыре рабочих часа» и «статус по пятницам». Это значения по умолчанию. Если у вашей команды приняты другие — их называет руководитель, и они главнее.
+  </div>
+
+  <div id="ob-body"></div>
+
+  <div class="tool" style="margin-top:34px">
+    <h2>Три ситуации, с которых начать</h2>
+    <p>Двадцать шесть сразу не потянет никто. Если взять только три, берите эти — из них вырастает половина остального.</p>
+    <ol>
+      <li><b>2.3, договорились устно.</b> Три-пять строк в общий чат в тот же день. Самое дешёвое действие в списке.</li>
+      <li><b>2.5, статус по проекту.</b> Один и тот же день недели, сами, в том числе когда сдвигов нет.</li>
+      <li><b>3.1, сотрудник давно делает не так.</b> На ближайшей личной встрече, сразу и не при команде.</li>
+    </ol>
+    <p>Остальное подтянется, когда эти три станут привычкой.</p>
+  </div>
+
+  <div class="tool" style="margin-top:16px">
+    <h2>Что делать в первые три месяца</h2>
+    <p>Пятнадцать ситуаций из двадцати шести работают с первого дня — они помечены выше. Остальным нужна история: квартал работы, свой бюджет, сотрудник, который у вас дольше месяца. К ним вернётесь позже, и это нормально.</p>
+    <p>Проверки — вопросы вроде «сколько раз за квартал» — вам пока отвечать нечем. Считайте с сегодняшнего дня и вернитесь к ним через три месяца.</p>
+    <p>А сейчас откройте вкладку «Тест»: двадцать коротких сцен с разбором. Очевидно неправильных ответов там почти нет, большинство примеров выглядит как нормальная работа — в этом весь смысл.</p>
+  </div>
+</section>
+
+<!-- ===================== РАБОЧИЙ РЕЖИМ ===================== -->
+<section class="panel" id="p-work" hidden>
+  <p class="eyebrow">Справочник — открывают перед разговором, а не читают подряд</p>
+  <h1 style="font-size:30px;margin:8px 0 6px;max-width:760px">Двадцать шесть ситуаций, в которых видно руководителя</h1>
+  <p class="who" style="max-width:760px">«Он» — руководитель, о котором идёт речь. Читаете про себя — значит про себя; готовитесь к разговору с сотрудником — значит про него.</p>
+  <div class="legend">
+    <div style="--c:var(--ok)"><b>Норма</b><span>Чего компания ждёт по умолчанию</span></div>
+    <div style="--c:var(--gray)"><b>Серая зона</b><span>Выглядит нормально, всегда есть оправдание. Один раз — мелочь, за год — проблема</span></div>
+    <div style="--c:var(--red)"><b>Красный флаг</b><span>Повод для отдельного разговора</span></div>
+    <div style="--c:var(--red)"><b>Чем кончается</b><span>Цена, если так продолжается</span></div>
+    <div style="--c:var(--accent)"><b>Проверка</b><span>Вопрос, на который отвечают фактом, а не мнением</span></div>
+  </div>
+
+  <div class="toolbar">
+    <label class="search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="q" placeholder="Поиск: бюджет, статус, встреча, ошибка…" aria-label="Поиск по ситуациям">
+    </label>
+    <button class="chip" data-sec="0" aria-pressed="true">Все</button>
+    <button class="chip" data-sec="1" aria-pressed="false">Мышление</button>
+    <button class="chip" data-sec="2" aria-pressed="false">Исполнение</button>
+    <button class="chip" data-sec="3" aria-pressed="false">Команда и мир</button>
+    <button class="chip" data-sec="4" aria-pressed="false">Я сам</button>
+  </div>
+
+  <div id="work-body"></div>
+</section>
+
+<!-- ===================== ТЕСТ ===================== -->
+<section class="panel narrow" id="p-test" hidden>
+  <p class="eyebrow">Двадцать сцен</p>
+  <h1 style="font-size:30px;margin:8px 0 6px">Норма или серая зона?</h1>
+  <p class="who">Двадцать сцен из двадцати шести ситуаций справочника. Шесть денежных и плановых пропущены — их трудно показать одной сценой.</p>
+  <p class="lede">Половина примеров выглядит как нормальная работа. Выберите, что это на самом деле, и посмотрите разбор. Результат никуда не отправляется.</p>
+  <div class="score">
+    <span class="n"><span id="done">0</span> из 20 · верно: <span id="right">0</span></span>
+    <span class="track"><span class="fill" id="fill"></span></span>
+    <button class="chip" id="reset">Начать заново</button>
+  </div>
+  <div id="test-body"></div>
+</section>
+
+<!-- ===================== ИНСТРУМЕНТЫ ===================== -->
+<section class="panel narrow" id="p-tools" hidden>
+  <p class="eyebrow">Для тех, кто ведёт разговор</p>
+  <h1 style="font-size:30px;margin:8px 0 6px">Как этим пользоваться</h1>
+  <p class="who">Этот раздел — для того, кто ведёт разговор или оценку. Здесь «человек» — ваш сотрудник, а не вы.</p>
+
+  <div class="tool">
+    <h2>Разговор один на один (личная встреча с сотрудником)</h2>
+    <p>Формула: факт, потом эффект, потом требование. Без ярлыков.</p>
+    <div class="quote"><b>Работает</b>За последний месяц я трижды узнавал статус, задавая вопрос первым. Из-за этого я дважды не успел предупредить клиента. Мне нужен статус по пятницам без моего вопроса — даже когда новостей нет.</div>
+    <div class="quote bad"><b>Не работает</b>Ты плохо коммуницируешь.</div>
+    <ul>
+      <li>Ярлык заменяем на случай. Не «безответственный», а «22 июля срок сдвинулся, я узнал об этом 24-го».</li>
+      <li>Требование формулируем как поведение, а не как качество. «Стать проактивнее» невыполнимо, «писать статус по пятницам» выполнимо.</li>
+      <li>Серую зону называем вслух вместе с её оправданием: «Ты решил не дёргать меня и разрулить сам. Понимаю. Но цена такого решения — неделя срока. В следующий раз приходи в первый день».</li>
+    </ul>
+  </div>
+
+  <div class="tool">
+    <h2>Оценка</h2>
+    <p>Не выставляйте баллы по ситуациям. Балл — это мнение, а мнения спорны.</p>
+    <ol>
+      <li>По каждой ситуации отметьте, где человек был последние три месяца: норма, серая зона, красный флаг.</li>
+      <li>К каждой отметке приложите один конкретный случай с датой. Нет случая — отметка не ставится.</li>
+      <li>Красный флаг — повод для отдельного разговора, а не строчка в форме.</li>
+      <li>Серая зона сразу в трёх и более ситуациях — системная проблема, а не мелкие огрехи.</li>
+      <li>На встрече, где руководители сверяют оценки между собой, обсуждайте случаи, а не общие слова о человеке.</li>
+    </ol>
+    <p>Чего этот справочник не измеряет: результат, профессиональные знания, вклад в стратегию. И отдельно — то, что тут вообще не считается, хотя стоит дорого: удерживает ли человек команду, каким он становится в кризис, умеет ли снять конфликт до того, как тот разгорится. Если руководитель силён в этом, справочник об этом промолчит. Помните об этом, когда по нему говорите о человеке.</p>
+  </div>
+
+  <div class="tool">
+    <h2>Самопроверка раз в квартал</h2>
+    <p>Пять вопросов, а не пятнадцать: список, который заполняют честно, должен читаться за минуту. Отвечать фактами. Если на вопрос нечего ответить — это и есть ответ.</p>
+    <ol class="selfcheck">
+      <li>Если я исчезну на неделю, команда восстановит мои договорённости из переписки?</li>
+      <li>Сколько статусов за месяц я дал сам, а сколько после вопроса?</li>
+      <li>Какую плохую новость я сейчас придерживаю, надеясь, что рассосётся?</li>
+      <li>Сколько претензий к людям лежит у меня невысказанными прямо сейчас?</li>
+      <li>После последней ошибки что изменилось в работе? Могу показать где?</li>
+    </ol>
+  </div>
+
+  <div class="tool">
+    <h2>Если что-то непонятно</h2>
+    <p>У справочника есть владелец: <span class="blank">имя и контакт</span>. Пишите ему, если формулировка непонятна, если ситуация из вашей работы сюда не попала или если написанное расходится с тем, как на самом деле принято. Справочник пересматривают раз в полгода.</p>
+    <p>Отдельно ценно, когда приносят живой случай из своей работы: примеры компании работают лучше любых правильных формулировок.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>Внутренний документ. Описывает поведение, а не людей.</footer>
+
+<script type="application/json" id="norma-data">{"SECTIONS":[null,{"t":"1. Мышление","sub":"Как выбирают, за что браться, и как далеко смотрят","pit":"Соглашаться на всё и рассчитывать «уплотнить». Отказаться неудобно, а сдвиг обнаружится только в конце месяца — когда сделать уже ничего нельзя."},{"t":"2. Исполнение","sub":"Как держат слово, время и деньги","pit":"Придерживать плохую новость, пока не сложится полная картина. Намерение хорошее, цена — неделя, в которую ещё можно было что-то сделать."},{"t":"3. Команда и внешний мир","sub":"Как рядом живут люди — свои и чужие","pit":"Копить недовольство сотрудником, потому что «мелочь, неудобно дёргать». Через три месяца это выдаётся разом и звучит как приговор."},{"t":"4. Я сам","sub":"Что происходит под давлением","pit":"Не паниковать самому, но всё помечать срочным. Команда работает на адреналине и выгорает за квартал."}],"D":[{"s":1,"id":"1.1","cost":"Два-три чужих плана съезжают, и узнают об этом, когда менять уже поздно.","w":"стоит дорого","d1":1,"say":"Возьму, но тогда то, что обещали к пятнице, уедет на неделю. Согласны?","t":"Приходит новая задача, а календарь уже полный","n":"Сразу называет, что подвинется и на сколько. Спрашивает об этом до начала работы, а не сообщает о сдвиге потом.","g":"Соглашается на всё и рассчитывает «уплотнить». Формально не отменил ничего. По факту съедут два-три дела — и видно это станет только в конце месяца.","r":"Называет тот срок, который хотят услышать, заранее зная, что не успеет. О срыве не сообщает вовсе — узнают, только если спросят напрямую. К этому моменту на его слово уже никто не опирается.","c":"Сколько раз за квартал он сказал «нет» или «тогда двигаем другое»? Если ни разу, приоритеты за него расставляет очередь входящих."},{"s":1,"id":"1.2","cost":"Квартал заканчивается не тем, что планировали, и объяснить почему не может никто.","w":"стоит дорого","t":"Пора составить план на квартал","n":"В плане есть запас времени на непредвиденное. Заранее решено, чем пожертвуют: «если подрядчик не успеет к 15-му, вторую часть переносим на следующий квартал».","g":"План собран из идеального сценария, запас времени нигде не записан. Любая неожиданность превращается в аврал — хотя случается такое каждый месяц.","r":"План расходится с реальностью к третьей неделе, и его перестают открывать. Планирование в отделе превращается в ритуал: раз в квартал написали, отчитались, забыли.","c":"Откройте план прошлого квартала. Он описывает то, что действительно произошло?"},{"s":1,"id":"1.3","cost":"Отдел работает на пределе постоянно, а объём не растёт: чтобы удержать тот же результат, приходится добавлять людей.","w":"стоит дорого","say":"Пятница с трёх у меня закрыта — разбираю, почему заявки второй месяц теряются.","t":"Каждая неделя уходит на срочное","n":"Раз в неделю несколько часов уходит на то, чтобы починить причину, а не следствие: переписать инструкцию, разделить дело на двоих, убрать лишнее согласование. Это время стоит в календаре, и в горячую неделю он двигает что угодно, но не его.","g":"«Сначала разгребём, потом займёмся». Разгребают третий квартал подряд, а ломается каждый месяц одно и то же.","r":"За полгода в работе отдела не изменилось ничего. Люди тушат те же пожары, что и в январе, и считают это нормальной работой. Отдел не развивается — он обслуживает сам себя.","c":"Назовите поломку, которая была месяц назад и больше не повторяется. Что для этого изменили?"},{"s":1,"id":"1.4","cost":"Компания платит за его память. Уйдёт в отпуск или уволится — часть работы придётся собирать заново.","w":"стоит дорого","d1":1,"say":"Записал, как мы это разрулили, лежит в папке команды — в следующий раз справитесь сами.","t":"Появилась задача, которой раньше не было","n":"Разобрался — и потратил лишние полчаса: записал, как это делается, и положил в общую папку команды. В следующий раз справляются без него.","g":"«Случай разовый, чего тут описывать». Случай повторяется в четвёртый раз, и каждый раз идут к нему.","r":"Половина дел отдела держится на том, что он помнит. Отпуск двигает сроки, увольнение означает месяцы восстановления. Он не построил систему — он стал узким местом.","c":"Что встанет, если он уедет на две недели без связи?"},{"s":1,"id":"1.5","cost":"Вопрос всплывает через месяц, когда решать его дороже, и решает уже не он.","w":"стоит дорого","d1":1,"say":"Вижу, что заявки от партнёров зависают между нами и продажами. Предлагаю замкнуть их на себя. Нужно ваше согласие.","t":"Всплыл вопрос, который ничей","n":"Может решить — решает и пишет тем, кого это касается. Решает не он — приходит с готовым предложением и говорит, что именно нужно от руководителя.","g":"Приносит проблему целиком: «давайте обсудим, что тут делать». Выглядит как совет, а на деле думать приходится руководителю.","r":"Молчит, потому что «это не моя ответственность». Вопрос не берёт никто, он висит месяцами и вылезает уже как авария. Формально он прав — и в этом худшее.","c":"Последние пять раз, когда он шёл к руководителю, — он приносил готовое предложение или вопрос «что делать?»"},{"s":2,"id":"2.1","cost":"Встречи начинаются на три минуты позже. За год это дни чужого времени — но ни один срок от этого не срывается.","w":"мелочь, но раздражает","d1":1,"t":"За десять минут до встречи","n":"Связь, место и материалы проверены заранее. Камера включается без «сейчас, секунду».","g":"Подключается вовремя, но первые три минуты уходят на «меня слышно?» и поиск файла. Каждый раз мелочь, за год — часы чужого времени.","r":"Обрывы связи, опоздания, неявки без предупреждения. Люди закладывают лишние десять минут на каждую встречу с ним и перестают звать туда, где нужен результат.","c":"Сколько встреч за месяц начались позже назначенного из-за него?"},{"s":2,"id":"2.2","cost":"Полтора часа шести человек вместо двадцати минут подготовки. Раз в неделю — почти три рабочие недели за квартал.","w":"стоит дорого","d1":1,"say":"Не успеваю подготовиться к четвергу. Предлагаю перенести на понедельник или решить в переписке.","t":"Длинная встреча с большим числом участников","n":"Повестку и материалы рассылает накануне: что решаем, какие есть варианты, что нужно от каждого. Не успевает подготовиться — предупреждает заранее и предлагает перенос.","g":"Встречу никто не ведёт. Разговор растекается, уходит в соседние детали, каждый добавляет своё. Через полтора часа расходятся без решения, но с ощущением, что поговорили полезно.","r":"Регулярно собирает шестерых на полтора часа без подготовки. Или отменяет в последний момент, не предложив нового времени. Его встречи начинают пропускать — и это разумное решение.","c":"У его встреч длиннее часа есть повестка до начала?"},{"s":2,"id":"2.3","cost":"Через месяц спорят о том, что решили. Работу переделывают, и виноватых нет: записи не было ни у кого.","w":"стоит дорого","d1":1,"t":"Договорились голосом — на созвоне или в звонке с клиентом","n":"В тот же день три-пять строк в общий чат: что решили, кто делает, к какому числу.","g":"Записывает только то, что касается лично его. «Мы же оба помним». Через две недели версии расходятся, и обе искренние.","r":"Через месяц спорит о том, чего в его версии не было. Проверить нечем — записи нет ни у кого. С ним начинают переписываться на всякий случай, а это уже недоверие.","c":"Сможет ли человек со стороны восстановить решение из переписки, не спрашивая участников?"},{"s":2,"id":"2.4","cost":"Человек на той стороне стоит полдня. Один раз ерунда, регулярно — его вопросы начинают решать в обход.","w":"мелочь, но раздражает","d1":1,"say":"Вижу вопрос, отвечу до 17:00.","t":"Пришёл вопрос в чате","n":"Отвечает в течение четырёх рабочих часов. Если ответа пока нет — говорит, когда он будет. Не понял — переспрашивает сразу, а не после трёх дней работы не в ту сторону.","g":"Ставит реакцию и уходит думать: ответ вроде бы дан, но у второй стороны на руках ничего. Или честное «я не увидел» — сообщение утонуло среди других чатов. Тому, кто ждал, от этого не легче.","r":"Молчит неделю, потом «был завал». Или «не видел» повторяется из раза в раз — ему перестают писать и решают вопросы в обход. Через полгода он не в курсе собственного участка.","c":"Сколько раз за месяц ему написали «?» или «есть новости?»."},{"s":2,"id":"2.5","cost":"Руководство принимает решения по картине месячной давности. Плохие новости приходят тогда, когда выбора уже нет.","w":"стоит дорого","d1":1,"say":"За неделю не сдвинулось: жду ответа от подрядчика. От вас ничего не нужно, напишу в пятницу.","t":"Прошла неделя работы над проектом","n":"Пишет сам, в один и тот же день недели: что сделано, где застряло, что нужно от руководителя. В том числе когда правильный статус звучит как «за неделю не сдвинулось».","g":"Пишет, когда есть хорошая новость. Плохую придерживает — «дособираю картину и напишу». Руководитель узнаёт положение дел, только когда спросит.","r":"Статус приходит только после вопроса сверху и всегда звучит как «в целом нормально». Реального положения дел не знает никто, включая его самого.","c":"Последние пять статусов — кто их начал, он или его руководитель?"},{"s":2,"id":"2.6","cost":"Риск, названный вовремя, стоит пятнадцати минут разговора. Тот же риск, названный поздно, — переноса срока и объяснений клиенту.","w":"стоит дорого","d1":1,"say":"Вижу риск: подрядчик может не успеть к 15-му. Предлагаю подстраховаться вторым исполнителем, от вас нужно решение по деньгам.","t":"Заметил риск","n":"Поднимает, пока цена вопроса — разговор на пятнадцать минут, а не перенос срока. Называет сам риск, насколько он вероятен, что предлагает и что нужно от руководителя.","g":"«Попробую разрулить сам, зачем дёргать людей». Приносит, когда своими силами уже не вытягивает.","r":"О проблеме первым узнаёт клиент, соседняя команда или руководство на показе работы. Он не управляет рисками — он сообщает о случившемся.","c":"Сколько рисков за квартал он назвал до того, как они реализовались?"},{"s":2,"id":"2.7","cost":"Та же ошибка повторяется у следующего. Компания платит за неё столько раз, сколько раз её не разобрали.","w":"стоит дорого","d1":1,"say":"Я ошибся, отправил клиенту старую версию. Новую уже переслал, в чек-лист добавил проверку версии.","t":"Ошибся, и это заметили","n":"Говорит прямо и коротко: что произошло, что уже сделал, что меняет, чтобы не повторилось. Меняет порядок работы или чек-лист, а не обещает «быть внимательнее».","g":"Объясняет контекст — искренне и обычно правдиво. Вину не отрицает, но после разговора непонятно, кто и что теперь делает иначе.","r":"Объяснение всегда сводится к тому, что подвёл кто-то другой. В работе не меняется ничего, и через месяц то же самое повторяется — уже как система.","c":"После последней крупной ошибки что-то изменилось в работе? Пусть покажет, что именно и где это записано."},{"s":2,"id":"2.8","cost":"Планы строят на его «готово». Когда выясняется, что не готово, сдвигается не только его работа.","w":"стоит дорого","d1":1,"say":"Осталось согласование с юристами, будет в четверг. Сейчас не готово.","t":"Задача почти готова, но не доведена","n":"В статусе прямо сказано, что именно осталось и к какому дню. Слово «готово» означает готово.","g":"«В целом сделано, доводим». Формулировка держится неделями, и окружающие привыкают делить его статусы на два.","r":"О том, что не готово, узнают от клиента. После этого его «готово» перепроверяют всегда: он перестаёт быть источником сведений о собственной работе.","c":"Его «готово» кто-нибудь перепроверяет? Если да, это уже ответ."},{"s":2,"id":"2.9","cost":"К нему перестают приходить с плохой новостью первыми. Дальше он узнаёт о проблемах последним — от клиента или от руководства.","w":"стоит дорого","t":"Провалилась команда","n":"Наружу говорит «мы не сделали» — это и его провал тоже. Кто что сделал не так, разбирает внутри команды. Если спрашивают прямо, имена называет — но сначала поговорив с самим человеком.","g":"«Ребята не вытянули, я предупреждал». Команда слышит из этой фразы одно: в следующий раз её тоже не прикроют.","r":"Называет фамилии наверх раньше, чем говорит с самими людьми. Команда это узнаёт — и дальше защищает себя, а не результат.","c":"Пойдёт ли подчинённый к нему с плохой новостью первым?"},{"s":2,"id":"2.10","cost":"Бюджет перестаёт быть управляемым: остаток известен только постфактум, планировать по нему нельзя.","w":"стоит дорого","say":"Нужно пятнадцать тысяч на замену, иначе люди стоят два дня. Оплачиваю?","t":"Нужна незапланированная трата","n":"Пишет руководителю до траты: сколько и зачем. Даже когда сроки жмут. С какой суммы нужно согласование — у каждого своё, эту цифру спрашивают в первую неделю.","g":"Тратит, потом сообщает: «это было очевидно необходимо, и я не хотел тормозить». Часто так и есть. Но бюджет перестаёт быть управляемым.","r":"О перерасходе узнают из отчёта в конце периода. Бюджет отдела существует только постфактум: планировать по нему нельзя, доверять цифрам тоже.","c":"Может ли он прямо сейчас, без подготовки, назвать остаток своего бюджета?"},{"s":2,"id":"2.11","cost":"Когда о нехватке узнают после траты, вариантов не остаётся ни у кого — только просить сверх плана.","w":"стоит дорого","t":"Понимает, что денег не хватит","n":"Говорит сразу, как увидел нехватку в расчётах, и приносит варианты: урезать, перенести или просить добавки.","g":"Держит до последнего — «может, договорюсь о скидке». Когда договориться не выходит, выбора уже нет ни у кого.","r":"Сообщает, когда деньги уже потрачены. Выбор «урезать или добрать» превращается в «добрать», и платит за это кто-то другой.","c":"Сколько раз за год он поднял вопрос бюджета до, а не после?"},{"s":3,"id":"3.1","cost":"Человек месяцами не знает, что что-то не так, и узнаёт в самый неудобный момент. Исправлять поздно, неприятно обоим.","w":"стоит дорого","say":"Хочу сказать про вчерашнюю встречу: ты пришёл без цифр, и мы потеряли двадцать минут. Дальше приноси их заранее.","t":"Подчинённый делает что-то не так уже несколько недель","n":"Говорит на ближайшем разговоре один на один, конкретно и сразу, а не копит. Человек узнаёт о проблеме от него, а не из итогов оценки.","g":"Копит и ждёт: «мелочь, неудобно из-за такого дёргать». Через три месяца выдаёт всё сразу, и это звучит как приговор, а не как обратная связь.","r":"Разбирает при всех — «чтобы остальные тоже услышали». Даже без имени: в маленькой команде все понимают, о ком речь. Там, где работают бок о бок, это иногда сходит с рук. Здесь человек закрывает ноутбук, остаётся с этим один и начинает смотреть вакансии.","c":"Последняя претензия к сотруднику: сколько дней прошло между самим случаем и разговором?"},{"s":3,"id":"3.2","cost":"Та же ошибка приходит от следующего человека. Платят за неё дважды, хотя разбор был.","w":"стоит дорого","say":"Давай разберём не кто виноват, а что в нашей работе позволило этому пройти.","t":"Подчинённый ошибся, и это стоило денег","n":"Первый вопрос — что в процессе позволило этому случиться. Разговор заканчивается изменением в работе, а не выводом о человеке.","g":"Разбирает по-доброму, никого не винит, ничего не меняет. Через два месяца та же ошибка у другого сотрудника, и это уже не совпадение.","r":"Разбор превращается в поиск виноватого, и команда запоминает: ошибку лучше прятать. С этого дня он узнаёт о проблемах последним и всегда слишком поздно.","c":"Последняя дорогая ошибка в его команде: что после неё изменилось в процессе?"},{"s":3,"id":"3.3","cost":"Сотрудник не растёт, а руководитель работает по ночам. Заняты оба, результат один.","w":"стоит дорого","t":"Делегировал задачу","n":"Договорился, какой нужен результат и в какие дни свериться. Между этими датами не вмешивается. Ошибку разбирает как повод улучшить работу, а не как проступок.","g":"Делегировал, но молча переделывает по ночам: «быстрее сделать самому, чем объяснять». Сотрудник не растёт и не понимает почему.","r":"Либо контролирует каждый шаг, либо не появляется до самого срока. За год под ним не вырос никто, а сильные ушли к тем, кто даёт расти.","c":"Назовите задачу, которую его сотрудник сегодня делает сам, а год назад её пришлось бы делать ему."},{"s":3,"id":"3.4","cost":"Разговоры за спиной становятся нормой команды. Первым это чувствует тот, кто пришёл последним.","w":"стоит дорого","d1":1,"t":"Кто-то из коллег обсуждается за спиной","n":"Претензию к коллеге говорит самому этому коллеге, а не третьим лицам. Если разговор свернул в обсуждение отсутствующего, называет это вслух и возвращает к делу.","g":"Сам не начинает, но слушает и кивает. Молчание в такой беседе читается как согласие, а назавтра пересказывается как его позиция.","r":"Собирает и разносит сам. Команда делится на тех, кто с ним, и тех, кого обсуждают, и работать вместе они перестают.","c":"Когда при нём последний раз обсуждали отсутствующего — он это остановил? Что он сказал?"},{"s":3,"id":"3.5","cost":"Клиент делает вывод не о человеке, а о компании. Цена такого вывода видна только на продлении договора.","w":"стоит дорого","t":"Говорит с клиентом или партнёром","n":"Помнит, что в этот момент он и есть компания. Обещание клиенту весит у него столько же, сколько обещание руководству.","g":"«По-честному, у нас тут сейчас бардак с этим». Сказано ради доверия, услышано как «с ними рискованно работать».","r":"Обсуждает с чужими решения руководства и коллег. Клиент делает единственный возможный вывод: внутри бардак, договариваться с нами рискованно.","c":"Что он говорит о компании клиентам, партнёрам и кандидатам, когда рядом нет коллег?"},{"s":3,"id":"3.6","cost":"О реакции клиентов узнают из жалобы, когда отменять решение уже дорого.","w":"стоит дорого","t":"Принимает решение, которое увидят снаружи","n":"До того как решение уйдёт наружу, спрашивает на встрече: «как это прочитает клиент?» — и ждёт ответа.","g":"Решение удобное и логичное — для нас. Вопрос «а как это увидит клиент» на встрече не прозвучал: он ничей.","r":"О реакции клиентов узнаёт из жалобы. Решение приходится отменять публично, и цену этого платит не он.","c":"В последнем крупном решении кто-нибудь озвучил взгляд клиента?"},{"s":3,"id":"3.7","cost":"Люди понимают, что при чужих можно всё. Клиент понимает, что у нас не команда.","w":"стоит дорого","d1":1,"say":"Ребята, стоп. Дорешаем без гостей — через полчаса у меня.","t":"При посторонних вспыхнуло между своими","n":"Гасит на месте, коротко и не выясняя, кто прав: «обсудим после». По существу разбирает в тот же день, как только посторонние ушли.","g":"Разводит и делает вид, что ничего не было. К теме не возвращается, и люди понимают, что так можно.","r":"При посторонних начинает выяснять, кто из своих не прав. Клиент видит не рабочий момент, а команду, которая друг за друга не держится.","c":"Последний раз, когда при клиенте вспыхнуло между своими, — вернулись к этому в тот же день?"},{"s":4,"id":"4.1","cost":"Команда работает на пределе, пока не начинает уходить. Заменить одного человека дороже, чем спокойная неделя.","w":"стоит дорого","d1":1,"t":"Кризис, всё горит","n":"Говорит медленнее обычного, разбивает работу на шаги. Факты о проблеме несёт команде сразу, свою тревогу — нет. После разговора с ним каждый знает, что делает в ближайший час.","g":"Сам не паникует, но заражает команду напряжением: рубленые сообщения, срочность во всём, «нужно вчера». Команда работает на адреналине и выгорает за квартал.","r":"Срывается на людей или пропадает. В самый тяжёлый момент команда остаётся без руководителя — и помнит об этом годами.","c":"Откройте его рабочий чат за самую тяжёлую неделю квартала. Сколько там сообщений со словом «срочно»?"},{"s":4,"id":"4.2","cost":"Пока он возвращается к прошлому провалу, команда учится не поднимать неудобные темы вообще.","w":"стоит дорого","t":"Неудача уже случилась","n":"День на разбор — и дальше. Возвращается к работе с выводом, а не с обидой.","g":"Внешне двигается дальше, но три недели возвращается к теме в разговорах: «мы же говорили, что так и будет». Команда учится эту тему не поднимать.","r":"Через месяц та же неудача всё ещё объясняет у него новые срывы. Разговор о настоящих причинах становится невозможным: любая тема упирается в прошлое.","c":"Сколько времени прошло между последней неудачей и первым конкретным действием после неё?"},{"s":4,"id":"4.3","cost":"Через полгода ему перестают говорить правду. С этого момента он руководит вслепую.","w":"стоит дорого","d1":1,"say":"Скажи честно, что со мной тяжело в работе. Мне это нужно, спорить не буду.","t":"Давно никто не говорил ему, что с ним тяжело","n":"Спрашивает сам, у разных людей, и хотя бы раз в год слышит что-то неприятное. Что-то одно из услышанного меняет.","g":"Слушает внимательно, благодарит, объясняет контекст. Не меняется ничего, и через полгода люди перестают говорить.","r":"Считает, что учиться нечему. Люди перестают говорить, обратной связи больше нет — и он руководит по картине многолетней давности.","c":"Что он изменил в себе за год по чужой просьбе? Назовите одно."}],"TEST":[{"a":"g","s":"Руководителю прилетает срочная задача. В календаре уже два проекта. Он отвечает «возьму, сделаем» и планирует поработать в выходные, чтобы всё уместить.","w":"Он не отказался и не назвал, что подвинется. Съедут оба проекта, но узнают об этом в конце месяца."},{"a":"n","s":"После звонка с клиентом он пишет в рабочий чат пять строк: что решили, кто делает, к какому числу.","w":"Договорённость получила письменный след в день разговора. Дальше её можно восстановить без участников."},{"a":"g","s":"Сотрудник прислал вопрос. Руководитель ставит реакцию, чтобы человек видел: вопрос замечен. Садится думать и отвечает через два дня.","w":"Реакция — не ответ. Двое суток у человека нет ни решения, ни срока, когда оно будет."},{"a":"g","s":"Проект встал из-за подрядчика. Руководитель неделю пытается договориться сам, потом сообщает наверх, что срок сдвинется на месяц.","w":"Намерение хорошее, цена — неделя, в которую наверху ещё можно было что-то сделать. Проблема дешевле всего в первый день."},{"a":"n","s":"В пятницу он пишет статус: за неделю ничего не сдвинулось, вот почему, вот что делаю дальше.","w":"Статус пришёл сам и без прикрас. Отсутствие движения — это тоже новость, и она нужна вовремя."},{"a":"g","s":"Сотрудник допустил дорогую ошибку. Руководитель разбирает её на общей встрече, не называя имени, «чтобы все научились».","w":"В команде из шести человек все понимают, о ком речь. Анонимность защищает хуже, чем кажется, а процесс при этом не меняется."},{"a":"g","s":"Он купил инструмент за небольшие деньги без согласования: без него команда простояла бы два дня. Написал об этом вечером.","w":"Разово оправданно. Но если так решается каждый мелкий вопрос, бюджет перестаёт быть управляемым, а сумма «мелкая» растёт."},{"a":"g","s":"На вопрос «как проект?» он отвечает: «в целом нормально, доводим». Так же он отвечал две недели назад.","w":"Формулировка не врёт, но и не сообщает ничего. Через месяц окружающие начинают делить его статусы на два."},{"a":"g","s":"Он говорит клиенту: «по-честному, у нас сейчас с этим бардак, но мы разберёмся».","w":"Сказано ради доверия, услышано как «с ними рискованно работать». В этот момент он и есть компания."},{"a":"g","s":"Коллеги обсуждают отсутствующего сотрудника. Он не поддерживает разговор, но и не уходит: молчит и кивает.","w":"Молчание в такой беседе читается как согласие, а назавтра пересказывается как его позиция."},{"a":"n","s":"Он приходит к своему руководителю: «вижу риск — подрядчик может не успеть к 15-му. Предлагаю подстраховаться вторым исполнителем, от вас нужно решение по бюджету».","w":"Риск назван до того, как выстрелил, и принесён с вариантом, а не с вопросом «что делать»."},{"a":"g","s":"Он делегировал задачу, а вечером сам переделал результат и ничего не сказал сотруднику.","w":"«Быстрее сделать самому, чем объяснять» — самое дорогое из экономных решений. Сотрудник не растёт и не понимает почему."},{"a":"g","s":"На созвон он подключается ровно вовремя, но первые три минуты ищет нужный файл и проверяет звук.","w":"Каждый раз мелочь. За год из этих мелочей набираются часы чужого времени."},{"a":"n","s":"После сорванного срока он меняет чек-лист сдачи работы, чтобы это не повторилось, и сообщает команде, что именно изменилось.","w":"Признание ошибки заканчивается изменением в процессе, а не обещанием быть внимательнее."},{"a":"r","s":"Он не пришёл на встречу и не предупредил. Написал на следующий день: «был завал».","w":"Неявка без предупреждения — не перегрузка, а сообщение остальным о том, сколько стоит их время."},{"a":"r","s":"Прошёл месяц после провала. В обсуждении новых срывов он продолжает возвращаться к нему: «ну мы же тогда говорили».","w":"Прошлая неудача превратилась в объяснение для всего нового. Команда учится не поднимать тему, и разговор о настоящих причинах не случается."},{"a":"r","s":"Проект сорвался. Он называет руководству фамилию сотрудника раньше, чем поговорил с самим сотрудником.","w":"После этого к нему никто не придёт с плохой новостью первым. А это единственный способ узнавать о проблемах вовремя."},{"a":"n","s":"Раз в год он просит трёх коллег честно сказать, что с ним тяжело, и одну вещь из услышанного меняет.","w":"Обратную связь о себе он добывает сам, а не ждёт. И она приводит к изменению, иначе люди перестают говорить."},{"a":"n","s":"Решив задачу, которая наверняка повторится, он тратит полчаса: описывает решение и кладёт туда, где его найдут другие.","w":"Следующий раз пройдёт без него. Это и есть разница между «сделал» и «сделал так, что можно передать»."},{"a":"g","s":"Кризисная неделя. Он спокоен, но пишет рублеными сообщениями и помечает всё как срочное. Команда работает на пределе.","w":"Паника не обязательно кричит. Она передаётся тоном и режимом срочности, и через квартал команда выгорает."}]}</script>
+
+<script id="app">
+const EDITS_KEY = "norma-edits";
+const BASE = JSON.parse(document.getElementById("norma-data").textContent);
+let STORE = BASE;
+try{ const saved = localStorage.getItem(EDITS_KEY); if(saved) STORE = JSON.parse(saved); }catch(e){}
+const SECTIONS = STORE.SECTIONS, D = STORE.D, TEST = STORE.TEST;
+
+const LABEL = {n:"Норма", g:"Серая зона", r:"Красный флаг"};
+const CLS = {n:"o-norm", g:"o-gray", r:"o-red"};
+
+const esc = s => s.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+
+/* ---------- Рабочий режим ---------- */
+function cardHTML(d){
+  const F = (f, v) => `data-id="${d.id}" data-f="${f}"`;
+  return `<article class="card">
+    <header><div class="ttl"><span class="num">${d.id}</span><h3 ${F("t")}>${esc(d.t)}</h3></div>${d.w ? `<span class="w ${d.w.startsWith("сто") ? "w-hi" : "w-lo"}">${esc(d.w)}</span>` : ""}</header>
+    <div class="states">
+      <div class="st norm"><span class="bar"></span><div><b>Норма</b><p ${F("n")}>${esc(d.n)}</p>${d.say ? `<p class="say" ${F("say")}>${esc(d.say)}</p>` : ""}</div></div>
+      <div class="st gray"><span class="bar"></span><div><b>Серая зона</b><p ${F("g")}>${esc(d.g)}</p></div></div>
+      <div class="st red"><span class="bar"></span><div><b>Красный флаг</b><p ${F("r")}>${esc(d.r)}</p></div></div>
+    </div>
+    ${d.cost ? `<div class="cost"><b>Чем кончается</b><span ${F("cost")}>${esc(d.cost)}</span></div>` : ""}
+    <div class="check"><b>Проверка</b><span ${F("c")}>${esc(d.c)}</span></div>
+  </article>`;
+}
+let secFilter = 0, query = "";
+function renderWork(){
+  const q = query.trim().toLowerCase();
+  const hit = D.filter(d =>
+    (secFilter === 0 || d.s === secFilter) &&
+    (!q || (d.t + " " + d.n + " " + d.g + " " + d.r + " " + d.c).toLowerCase().includes(q)));
+  if(!hit.length){
+    document.getElementById("work-body").innerHTML = '<p class="empty">Ничего не нашлось. Попробуйте другое слово.</p>';
+    return;
+  }
+  let html = "";
+  for(let s = 1; s <= 4; s++){
+    const inSec = hit.filter(d => d.s === s);
+    if(!inSec.length) continue;
+    html += `<div class="sec-head"><h2>${SECTIONS[s].t}</h2><hr></div>
+             <div class="grid">${inSec.map(cardHTML).join("")}</div>`;
+  }
+  document.getElementById("work-body").innerHTML = html;
+}
+
+/* ---------- Новичку ---------- */
+function renderOnboarding(){
+  let html = "";
+  for(let s = 1; s <= 4; s++){
+    const inSec = D.filter(d => d.s === s);
+    html += `<section class="ob-sec">
+      <h2>${SECTIONS[s].t}</h2>
+      <p style="color:var(--ink-3);font-size:14.5px">${SECTIONS[s].sub}</p>
+      <ul class="ob-list">${inSec.map(d =>
+        `<li>
+          <span class="when">${esc(d.t)}${d.d1 ? "" : '<span class="badge">нужна история</span>'}</span>
+          <span class="do">${esc(d.n)}</span>
+          ${d.say ? `<span class="ob-say">«${esc(d.say)}»</span>` : ""}
+        </li>`).join("")}</ul>
+      <div class="pitfall"><b>Чаще всего идёт не так</b>${esc(SECTIONS[s].pit)}</div>
+    </section>`;
+  }
+  document.getElementById("ob-body").innerHTML = html;
+}
+
+/* ---------- Тест ---------- */
+let answers = {};
+function renderTest(){
+  document.getElementById("test-body").innerHTML = TEST.map((q, i) =>
+    `<div class="q" data-i="${i}">
+      <p class="scene"><span class="qn">${String(i + 1).padStart(2, "0")}</span>${esc(q.s)}</p>
+      <div class="opts">
+        ${["n","g","r"].map(k =>
+          `<button class="opt ${CLS[k]}" data-k="${k}">${LABEL[k]}</button>`).join("")}
+      </div>
+      <div class="why" hidden></div>
+    </div>`).join("");
+  Object.keys(answers).forEach(i => paint(+i, answers[i], false));
+  updateScore();
+}
+function paint(i, pick){
+  const box = document.querySelector(`.q[data-i="${i}"]`);
+  if(!box) return;
+  const correct = TEST[i].a;
+  box.querySelectorAll(".opt").forEach(b => {
+    b.disabled = true;
+    const k = b.dataset.k;
+    if(k === pick) b.classList.add("picked");
+    if(k === correct) b.classList.add("answer");
+  });
+  const why = box.querySelector(".why");
+  why.innerHTML = (pick === correct ? "<b>Верно.</b> " : `<b>На самом деле — ${LABEL[correct].toLowerCase()}.</b> `) + esc(TEST[i].w);
+  why.hidden = false;
+}
+function updateScore(){
+  const keys = Object.keys(answers);
+  const right = keys.filter(i => answers[i] === TEST[i].a).length;
+  document.getElementById("done").textContent = keys.length;
+  document.getElementById("right").textContent = right;
+  document.getElementById("fill").style.width = (keys.length / TEST.length * 100) + "%";
+}
+function save(){
+  try{ localStorage.setItem("norma-test", JSON.stringify(answers)); }catch(e){}
+}
+
+/* ---------- вкладки ---------- */
+const PANELS = {ob:"p-ob", work:"p-work", test:"p-test", tools:"p-tools"};
+function show(name){
+  Object.entries(PANELS).forEach(([k, id]) => { document.getElementById(id).hidden = (k !== name); });
+  document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", String(t.dataset.panel === name)));
+  window.scrollTo({top:0, behavior:"instant"});
+  try{ localStorage.setItem("norma-tab", name); }catch(e){}
+}
+
+/* ---------- события ---------- */
+document.querySelectorAll(".tab").forEach(t =>
+  t.addEventListener("click", () => show(t.dataset.panel)));
+
+document.querySelectorAll(".chip[data-sec]").forEach(c =>
+  c.addEventListener("click", () => {
+    secFilter = +c.dataset.sec;
+    document.querySelectorAll(".chip[data-sec]").forEach(x =>
+      x.setAttribute("aria-pressed", String(x === c)));
+    renderWork();
+  }));
+
+document.getElementById("q").addEventListener("input", e => { query = e.target.value; renderWork(); });
+
+document.getElementById("test-body").addEventListener("click", e => {
+  const b = e.target.closest(".opt");
+  if(!b || b.disabled) return;
+  const i = +b.closest(".q").dataset.i;
+  answers[i] = b.dataset.k;
+  paint(i, b.dataset.k);
+  updateScore();
+  save();
+});
+
+document.getElementById("reset").addEventListener("click", () => {
+  answers = {};
+  save();
+  renderTest();
+});
+
+/* ---------- старт ---------- */
+try{ answers = JSON.parse(localStorage.getItem("norma-test") || "{}") || {}; }catch(e){ answers = {}; }
+renderWork();
+renderOnboarding();
+renderTest();
+let startTab = "ob";
+try{ const t = localStorage.getItem("norma-tab"); if(t && PANELS[t]) startTab = t; }catch(e){}
+show(startTab);
+
+/* ---------- режим правки ---------- */
+const FONTS = "https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap";
+let editing = false;
+const $ = id => document.getElementById(id);
+
+function persist(){
+  try{ localStorage.setItem(EDITS_KEY, JSON.stringify(STORE)); }catch(e){}
+}
+function setEditable(on){
+  document.querySelectorAll("[data-f]").forEach(el => {
+    if(on) el.setAttribute("contenteditable", "true");
+    else el.removeAttribute("contenteditable");
+  });
+}
+function toggleEdit(on){
+  editing = on;
+  document.body.toggleAttribute("data-edit", on);
+  $("editbar").hidden = !on;
+  $("editBtn").setAttribute("aria-pressed", String(on));
+  $("editBtn").textContent = on ? "Закончить правку" : "Править текст";
+  if(on && document.getElementById("p-work").hidden) show("work");
+  setEditable(on);
+}
+$("editBtn").addEventListener("click", () => toggleEdit(!editing));
+
+document.addEventListener("input", e => {
+  if(!editing) return;
+  const el = e.target.closest("[data-f]");
+  if(!el) return;
+  const item = D.find(x => x.id === el.dataset.id);
+  if(!item) return;
+  item[el.dataset.f] = el.textContent.replace(/\s+/g, " ").trim();
+  persist();
+  $("editMsg").textContent = "Сохранено у вас в браузере";
+});
+
+function cleanBody(){
+  const b = document.body.cloneNode(true);
+  b.querySelectorAll("script").forEach(el => el.remove());
+  ["work-body", "ob-body", "test-body"].forEach(id => { const el = b.querySelector("#" + id); if(el) el.innerHTML = ""; });
+  b.querySelectorAll("[contenteditable]").forEach(el => el.removeAttribute("contenteditable"));
+  b.removeAttribute("data-edit");
+  const bar = b.querySelector("#editbar"); if(bar) bar.hidden = true;
+  const eb = b.querySelector("#editBtn"); if(eb){ eb.setAttribute("aria-pressed", "false"); eb.textContent = "Править текст"; }
+  const em = b.querySelector("#editMsg"); if(em) em.textContent = "";
+  b.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", String(t.dataset.panel === "ob")));
+  b.querySelectorAll(".panel").forEach(p => { p.hidden = p.id !== "p-ob"; });
+  b.querySelectorAll(".chip[data-sec]").forEach(c => c.setAttribute("aria-pressed", String(c.dataset.sec === "0")));
+  const pb = b.querySelector("#pubBtn"); if(pb) pb.hidden = true;
+  return b.innerHTML;
+}
+function buildDoc(){
+  const head = [
+    '<meta charset="utf-8">',
+    '<meta name="viewport" content="width=device-width, initial-scale=1">',
+    "<title>" + document.title + "</title>",
+    '<meta name="robots" content="noindex, nofollow">',
+    '<link rel="preconnect" href="https://fonts.googleapis.com">',
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+    '<link rel="stylesheet" href="' + FONTS + '">',
+    "<style>" + $("css").textContent + "</style>"
+  ].join("\n");
+  const data = '<script type="application/json" id="norma-data">' + JSON.stringify(STORE) + "<\/script>";
+  const app = '<script id="app">' + $("app").textContent + "<\/script>";
+  return "<!doctype html>\n<html lang=\"ru\">\n<head>\n" + head + "\n</head>\n<body>\n" +
+         cleanBody() + "\n" + data + "\n" + app + "\n</body>\n</html>\n";
+}
+
+$("saveFile").addEventListener("click", async () => {
+  const html = buildDoc();
+  $("editMsg").textContent = "Готовлю файл…";
+  try{
+    const dl = await claude.use("downloads");
+    if(dl){ await dl.save({ filename: "index.html", data: html }); $("editMsg").textContent = "Файл сохранён"; return; }
+  }catch(e){}
+  try{
+    const url = URL.createObjectURL(new Blob([html], { type: "text/html" }));
+    const a = document.createElement("a");
+    a.href = url; a.download = "index.html"; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 3000);
+    $("editMsg").textContent = "Файл скачан — залейте его на GitHub вместо старого";
+  }catch(e){ $("editMsg").textContent = "Скачать не вышло, попробуйте «Опубликовать»"; }
+});
+
+$("resetEdits").addEventListener("click", () => {
+  try{ localStorage.removeItem(EDITS_KEY); }catch(e){}
+  location.reload();
+});
+
+(async () => {
+  try{
+    const art = await claude.use("artifact");
+    if(!art) return;
+    const pb = $("pubBtn");
+    pb.hidden = false;
+    pb.addEventListener("click", async () => {
+      $("editMsg").textContent = "Публикую…";
+      try{
+        await art.publish(buildDoc());
+        try{ localStorage.removeItem(EDITS_KEY); }catch(e){}
+        $("editMsg").textContent = "Опубликовано — страница обновится у всех";
+      }catch(err){
+        const code = err && err.code;
+        $("editMsg").textContent = code === "conflict"
+          ? "Кто-то опубликовал раньше. Страница сейчас перезагрузится"
+          : "Опубликовать не удалось. Можно скачать файл";
+      }
+    });
+  }catch(e){}
+})();
+
+</script>
+
+</body>
+</html>
