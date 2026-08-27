@@ -253,6 +253,8 @@ body[data-edit] [data-f]:focus{outline:2px solid var(--accent);outline-offset:3p
   color:var(--ink-3);font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.07em;
   text-transform:uppercase;vertical-align:2px;
 }
+.ob-say::before{content:"«"}
+.ob-say::after{content:"»"}
 .ob-say{margin-top:5px;padding-left:10px;border-left:2px solid var(--ok);font-size:14.5px;color:var(--ink);font-style:italic;line-height:1.45}
 
 /* ---------- onboarding ---------- */
@@ -295,6 +297,10 @@ body[data-edit] [data-f]:focus{outline:2px solid var(--accent);outline-offset:3p
 .why{margin-top:13px;padding-top:13px;border-top:1px solid var(--line-soft);font-size:14.5px;line-height:1.55;color:var(--ink-2)}
 .why b{color:var(--ink)}
 .why[hidden]{display:none}
+.why-edit{display:none;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);font-size:14px;color:var(--ink-2);line-height:1.5}
+.why-edit b{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+body[data-edit] .why-edit{display:block}
+body[data-edit] .why{display:none}
 
 /* ---------- tools ---------- */
 .tool{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;margin-top:16px}
@@ -344,7 +350,7 @@ footer{max-width:var(--maxw);margin:0 auto;padding:0 22px 60px;color:var(--ink-3
 </div>
 
 <div class="editbar" id="editbar" hidden>
-  <span class="hint">Кликните в любой текст карточки и правьте. Изменения сохраняются в вашем браузере.</span>
+  <span class="hint" id="editHint">Правьте любой текст прямо на странице. Пока изменения видите только вы — чтобы они попали на сайт, нажмите «Скачать файл» и залейте его заново.</span>
   <button class="chip" id="saveFile">Скачать файл</button>
   <button class="chip" id="pubBtn" hidden>Опубликовать для всех</button>
   <button class="chip" id="resetEdits">Вернуть как было</button>
@@ -582,15 +588,15 @@ function renderOnboarding(){
   for(let s = 1; s <= 4; s++){
     const inSec = D.filter(d => d.s === s);
     html += `<section class="ob-sec">
-      <h2>${SECTIONS[s].t}</h2>
-      <p style="color:var(--ink-3);font-size:14.5px">${SECTIONS[s].sub}</p>
+      <h2 data-sec="${s}" data-sec-f="t">${esc(SECTIONS[s].t)}</h2>
+      <p style="color:var(--ink-3);font-size:14.5px" data-sec="${s}" data-sec-f="sub">${esc(SECTIONS[s].sub)}</p>
       <ul class="ob-list">${inSec.map(d =>
         `<li>
-          <span class="when">${esc(d.t)}${d.d1 ? "" : '<span class="badge">нужна история</span>'}</span>
-          <span class="do">${esc(d.n)}</span>
-          ${d.say ? `<span class="ob-say">«${esc(d.say)}»</span>` : ""}
+          <span class="when"><span data-id="${d.id}" data-f="t">${esc(d.t)}</span>${d.d1 ? "" : '<span class="badge">нужна история</span>'}</span>
+          <span class="do" data-id="${d.id}" data-f="n">${esc(d.n)}</span>
+          ${d.say ? `<span class="ob-say" data-id="${d.id}" data-f="say">${esc(d.say)}</span>` : ""}
         </li>`).join("")}</ul>
-      <div class="pitfall"><b>Чаще всего идёт не так</b>${esc(SECTIONS[s].pit)}</div>
+      <div class="pitfall"><b>Чаще всего идёт не так</b><span data-sec="${s}" data-sec-f="pit">${esc(SECTIONS[s].pit)}</span></div>
     </section>`;
   }
   document.getElementById("ob-body").innerHTML = html;
@@ -601,12 +607,13 @@ let answers = {};
 function renderTest(){
   document.getElementById("test-body").innerHTML = TEST.map((q, i) =>
     `<div class="q" data-i="${i}">
-      <p class="scene"><span class="qn">${String(i + 1).padStart(2, "0")}</span>${esc(q.s)}</p>
+      <p class="scene"><span class="qn">${String(i + 1).padStart(2, "0")}</span><span data-q="${i}" data-qf="s">${esc(q.s)}</span></p>
       <div class="opts">
         ${["n","g","r"].map(k =>
           `<button class="opt ${CLS[k]}" data-k="${k}">${LABEL[k]}</button>`).join("")}
       </div>
       <div class="why" hidden></div>
+      <div class="why-edit"><b>Разбор:</b> <span data-q="${i}" data-qf="w">${esc(q.w)}</span></div>
     </div>`).join("");
   Object.keys(answers).forEach(i => paint(+i, answers[i], false));
   updateScore();
@@ -649,15 +656,19 @@ function show(name){
 document.querySelectorAll(".tab").forEach(t =>
   t.addEventListener("click", () => show(t.dataset.panel)));
 
-document.querySelectorAll(".chip[data-sec]").forEach(c =>
-  c.addEventListener("click", () => {
-    secFilter = +c.dataset.sec;
-    document.querySelectorAll(".chip[data-sec]").forEach(x =>
-      x.setAttribute("aria-pressed", String(x === c)));
-    renderWork();
-  }));
+document.addEventListener("click", e => {
+  const c = e.target.closest(".chip[data-sec]");
+  if(!c) return;
+  secFilter = +c.dataset.sec;
+  document.querySelectorAll(".chip[data-sec]").forEach(x =>
+    x.setAttribute("aria-pressed", String(x === c)));
+  renderWork();
+});
 
-document.getElementById("q").addEventListener("input", e => { query = e.target.value; renderWork(); });
+document.addEventListener("input", e => {
+  if(e.target.id !== "q") return;
+  query = e.target.value; renderWork();
+});
 
 document.getElementById("test-body").addEventListener("click", e => {
   const b = e.target.closest(".opt");
@@ -677,6 +688,10 @@ document.getElementById("reset").addEventListener("click", () => {
 
 /* ---------- старт ---------- */
 try{ answers = JSON.parse(localStorage.getItem("norma-test") || "{}") || {}; }catch(e){ answers = {}; }
+try{
+  const st = localStorage.getItem("norma-static");
+  if(st) document.querySelector("main").innerHTML = st;
+}catch(e){}
 renderWork();
 renderOnboarding();
 renderTest();
@@ -686,17 +701,35 @@ show(startTab);
 
 /* ---------- режим правки ---------- */
 const FONTS = "https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap";
+const STATIC_KEY = "norma-static";
 let editing = false;
 const $ = id => document.getElementById(id);
 
-function persist(){
-  try{ localStorage.setItem(EDITS_KEY, JSON.stringify(STORE)); }catch(e){}
+function persistData(){ try{ localStorage.setItem(EDITS_KEY, JSON.stringify(STORE)); }catch(e){} }
+function snapshotStatic(){
+  const m = document.querySelector("main").cloneNode(true);
+  m.querySelectorAll("#work-body,#ob-body,#test-body").forEach(el => el.innerHTML = "");
+  m.querySelectorAll("[contenteditable]").forEach(el => el.removeAttribute("contenteditable"));
+  return m.innerHTML;
+}
+function persistStatic(){ try{ localStorage.setItem(STATIC_KEY, snapshotStatic()); }catch(e){} }
+
+const GEN = "#work-body,#ob-body,#test-body";
+function editableNodes(){
+  const out = new Set();
+  document.querySelectorAll("[data-f],[data-sec-f],[data-qf]").forEach(el => out.add(el));
+  document.querySelectorAll("main h1, main h2, main h3, main p, main li, main .legend b, main .legend span, main .eyebrow, footer").forEach(el => {
+    if(el.closest(GEN)) return;
+    if(el.closest("button")) return;
+    if(el.classList.contains("blank")) { out.add(el); return; }
+    out.add(el);
+  });
+  return [...out];
 }
 function setEditable(on){
-  document.querySelectorAll("[data-f]").forEach(el => {
-    if(on) el.setAttribute("contenteditable", "true");
-    else el.removeAttribute("contenteditable");
-  });
+  document.querySelectorAll("[contenteditable]").forEach(el => el.removeAttribute("contenteditable"));
+  if(!on) return;
+  editableNodes().forEach(el => el.setAttribute("contenteditable", "true"));
 }
 function toggleEdit(on){
   editing = on;
@@ -704,35 +737,44 @@ function toggleEdit(on){
   $("editbar").hidden = !on;
   $("editBtn").setAttribute("aria-pressed", String(on));
   $("editBtn").textContent = on ? "Закончить правку" : "Править текст";
-  if(on && document.getElementById("p-work").hidden) show("work");
   setEditable(on);
+  if(!on) $("editMsg").textContent = "";
 }
 $("editBtn").addEventListener("click", () => toggleEdit(!editing));
 
 document.addEventListener("input", e => {
   if(!editing) return;
-  const el = e.target.closest("[data-f]");
+  const el = e.target.closest("[contenteditable]");
   if(!el) return;
-  const item = D.find(x => x.id === el.dataset.id);
-  if(!item) return;
-  item[el.dataset.f] = el.textContent.replace(/\s+/g, " ").trim();
-  persist();
+  const txt = el.textContent.replace(/\s+/g, " ").trim();
+  if(el.dataset.f){
+    const item = D.find(x => x.id === el.dataset.id);
+    if(item){ item[el.dataset.f] = txt; persistData(); }
+  } else if(el.dataset.secF){
+    const sec = SECTIONS[+el.dataset.sec];
+    if(sec){ sec[el.dataset.secF] = txt; persistData(); }
+  } else if(el.dataset.qf){
+    const q = TEST[+el.dataset.q];
+    if(q){ q[el.dataset.qf] = txt; persistData(); }
+  } else {
+    persistStatic();
+  }
   $("editMsg").textContent = "Сохранено у вас в браузере";
 });
 
 function cleanBody(){
   const b = document.body.cloneNode(true);
   b.querySelectorAll("script").forEach(el => el.remove());
-  ["work-body", "ob-body", "test-body"].forEach(id => { const el = b.querySelector("#" + id); if(el) el.innerHTML = ""; });
+  b.querySelectorAll(GEN).forEach(el => el.innerHTML = "");
   b.querySelectorAll("[contenteditable]").forEach(el => el.removeAttribute("contenteditable"));
   b.removeAttribute("data-edit");
   const bar = b.querySelector("#editbar"); if(bar) bar.hidden = true;
   const eb = b.querySelector("#editBtn"); if(eb){ eb.setAttribute("aria-pressed", "false"); eb.textContent = "Править текст"; }
   const em = b.querySelector("#editMsg"); if(em) em.textContent = "";
+  const pb = b.querySelector("#pubBtn"); if(pb) pb.hidden = true;
   b.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", String(t.dataset.panel === "ob")));
   b.querySelectorAll(".panel").forEach(p => { p.hidden = p.id !== "p-ob"; });
   b.querySelectorAll(".chip[data-sec]").forEach(c => c.setAttribute("aria-pressed", String(c.dataset.sec === "0")));
-  const pb = b.querySelector("#pubBtn"); if(pb) pb.hidden = true;
   return b.innerHTML;
 }
 function buildDoc(){
@@ -764,12 +806,13 @@ $("saveFile").addEventListener("click", async () => {
     const a = document.createElement("a");
     a.href = url; a.download = "index.html"; document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 3000);
-    $("editMsg").textContent = "Файл скачан — залейте его на GitHub вместо старого";
-  }catch(e){ $("editMsg").textContent = "Скачать не вышло, попробуйте «Опубликовать»"; }
+    $("editMsg").textContent = "Файл скачан. Проверьте, что он называется index.html";
+  }catch(e){ $("editMsg").textContent = "Скачать не вышло"; }
 });
 
 $("resetEdits").addEventListener("click", () => {
-  try{ localStorage.removeItem(EDITS_KEY); }catch(e){}
+  if(!confirm("Вернуть весь текст к исходному? Ваши правки будут потеряны.")) return;
+  try{ localStorage.removeItem(EDITS_KEY); localStorage.removeItem(STATIC_KEY); }catch(e){}
   location.reload();
 });
 
@@ -779,11 +822,13 @@ $("resetEdits").addEventListener("click", () => {
     if(!art) return;
     const pb = $("pubBtn");
     pb.hidden = false;
+    $("editHint").textContent = "Правьте любой текст прямо на странице. Пока изменения видите только вы — чтобы их увидели все, нажмите «Опубликовать для всех».";
     pb.addEventListener("click", async () => {
+      if(!confirm("Опубликовать? Новый текст увидят все, у кого есть ссылка.")) return;
       $("editMsg").textContent = "Публикую…";
       try{
         await art.publish(buildDoc());
-        try{ localStorage.removeItem(EDITS_KEY); }catch(e){}
+        try{ localStorage.removeItem(EDITS_KEY); localStorage.removeItem(STATIC_KEY); }catch(e){}
         $("editMsg").textContent = "Опубликовано — страница обновится у всех";
       }catch(err){
         const code = err && err.code;
@@ -794,7 +839,6 @@ $("resetEdits").addEventListener("click", () => {
     });
   }catch(e){}
 })();
-
 </script>
 
 </body>
